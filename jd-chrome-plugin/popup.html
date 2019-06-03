@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>popup页</title>
+	<meta charset="utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style>
+		body {
+			font-family: 'Microsoft Yahei';
+			width: 500px;
+			min-height: 100px;
+		}
+		h1{text-align: center;}
+		textarea{position: absolute;top: 0px;left: 0px;z-index: -999;opacity: 0;}
+		.head #btn_clear{background-color: orangered;color: #fff;border-color: red;}
+		.head #btn_mayi{position: absolute;top: 103px;right: 205px;cursor: pointer;display: none;}
+		.head #btn_asset{position: absolute;top: 103px;right: 205px;cursor: pointer;display: none;}
+		.head #btn_xinzi{position: absolute;top: 103px;right: 132px;cursor: pointer;display: none;}
+		.head .msg{display: inline-block; padding: 5px;color: #fa1d25;}
+		.head .work{width: 68px;position: absolute;top: 65px;right: 8px;display: none;}
+		.head .restart{display: inline-block;margin-left:12px;margin-right: 13px;}
+		.head .restart input{width: 23px;}
+		.display{display: inline-block!important;}
+		.head #btn_more{width: 30px;position: absolute;top: 105px;right: 98px;cursor: pointer; transition: all 0.5s ease;opacity: 0;}
+		.head #btn_more.showMore{transform: rotate(180deg);}
+		.head #btn_more:hover{opacity: 1;}
+		.url_input{width: 200px;height: 300px;border: 2px dotted skyblue;position: absolute;background-color: #fff;z-index: 999;display: none;}
+		.url_input span{text-align: center;display: block;line-height: 28px;width: 100%;font-weight: bold;color: deepskyblue;}
+		.url_input textarea{width: 194px;height: 266px;opacity: 1;margin-top: 28px;}
+		.table_block table thead th{border: 1px solid #333;border-left: none;width: 40px;}
+		.table_block table thead th:first-child{border: 1px solid #333;}
+		.table_block table thead th:last-child{width: 380px;text-align: left;padding-left: 45px;}
+		.table_block table thead th.status_sort,.table_block table thead th.beans_sort{cursor: pointer;}
+		.table_block table thead th .sort{position: relative;}
+		.table_block table thead th .sort .asc{position: absolute;left: -3px;top: 2px; border-bottom: 5px solid #aaa;border-left: 5px solid transparent;border-right: 5px solid transparent;}
+		.table_block table thead th .sort .desc{position: absolute;left:-3px; top: 9px; border-top: 5px solid #aaa;border-left: 5px solid transparent;border-right: 5px solid transparent;}
+		.table_block table thead th .sort .sort_active{border-top-color: deepskyblue;border-bottom-color: deepskyblue;}
+		.table_block table tbody {display: block;height: 300px;overflow-y: scroll;}
+		.table_block table thead,.table_block table tbody tr {display: table;table-layout: fixed;text-align: center;}
+		.table_block table tbody tr:nth-child(odd){background-color: #fff;}
+		.table_block table tbody tr:nth-child(even){background-color: #eee;}
+		.table_block table tbody tr td{text-align: center;width: 40px;}
+		.table_block table tbody tr td a {margin-right: 10px;}
+		.table_block table tbody tr td .ctrue{color: transparent; display: inline-block;width:3vw;height: 3vw; background: url(img/true.png) 50% no-repeat;background-size: contain;content: "viewport-units-buggyfill; margin-left: 0.66667vw; width: 3.2vw; height: 3.2vw";}
+		.table_block table tbody tr td .cfalse{color: transparent; display: inline-block;width:3vw;height: 3vw; background: url(img/false.png) 50% no-repeat;background-size: contain;content: "viewport-units-buggyfill; margin-left: 0.66667vw; width: 3.2vw; height: 3.2vw";}
+		.table_block table tbody tr td .beans {margin-left: .66667vw;display: inline-block;width: 2.2vw;height: 2.2vw;
+		background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAgCAMAAADdXFNzAAAAhFBMVEUAAAD9min9mSn9mSn8min8min9min9min9mir/oS//s0D9min9min9mSn9min8mSn9min9mSn9min8myr9miv/myr/nCv/nSv9mir9mir/miv/nSz/nTH9mSn9mSn8miv8mSn////+/fr+6dH8uGr8qkz8oDb906P9vnb+8+b+7tv9yY5MVMMOAAAAIHRSTlMA+uvhsMGDdWoTBfPm2cq7qp96YVVMNSajmEAaDdKPZd4UQZwAAADiSURBVCjPfdPrUsIwEIbh3fREW2pLOSmgfmkRUO///syoQJIt+/59pptMmlBcWWSGk3ZW0mRFjb/q2RSnuJdWghfwS2POEdaHvOfIeRv4C+IWPm9ZOO/vXGX4QNzS3/vRHmN/9hY/fUp/vQ7vgLMdETf/P/QMuAyDXJ9/eZeAz9Z+Y/r7HDiNdrhA9uS4h/Ov0Q2XdUQrKPVUJZpvaKmxCW8EJo6v0cdTrXBGRNr21s5b+In7p+zflOQ6GG06PT6/2/t4U9mVS+V38lrP49+6oaBDkfi6ItkubxvDpumK4NH8ANVwVIAXixCDAAAAAElFTkSuQmCC) 50% no-repeat;
+    background-size: contain;content: "viewport-units-buggyfill; margin-left: 0.66667vw; width: 3.2vw; height: 3.2vw";}
+		.table_block table tbody tr td:last-child {text-align: left;padding-left: 10px;width: 360px;}
+		.table_block table tbody .noData{text-align: center;font-size: 20px;color: #80baf4;}
+		.table_block table tbody .normal{color: #9e1e96;}
+		.table_block table tbody .active{color: skyblue;}
+	</style>
+</head>
+<body>
+	<textarea></textarea>
+	<h1>京豆自动领取 V1.0</h1>
+	<hr>
+	<div class="head">
+		<select id="input_select">
+			<option value ="auto" selected = "selected">自动</option>
+			<option value="manual">手动</option>
+		</select>
+		<button type="button" id="btn_get">获取资源</button>
+		<button type="button" id="btn_start">开始</button>
+		<button type="button" id="btn_copy">复制</button>
+		<div class="restart">
+			<span>指定从</span>
+			<input type="text" placeholder="0" id="input_restart">
+			<button type="button" id="btn_restart">执行</button>
+		</div>
+		<button type="button" id="btn_clear">清除数据</button>
+		<img src="img/work2.gif" class='work'>
+		<img src="img/more.png" alt="显示更多" title="显示更多" id="btn_more">
+		<!-- <button type="button" id="btn_mayi">蚂蚁积分</button> -->
+		<button type="button" id="btn_asset">资产明细</button>
+		<button type="button" id="btn_xinzi">薪资明细</button>
+		<br>
+		<span class="status"></span>
+		<br>
+		<span class="msg"></span>
+	</div>
+	<div class='url_input'>
+		<span>请在输入框中输入url</span>
+		<textarea></textarea>
+	</div>
+	<div class="table_block">
+		<table border="0" cellspacing="0" cellpadding="2">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th class="status_sort">状态
+						<span class="sort">
+							<span class="asc"></span>
+							<span class="desc"></span>
+						</span>
+					</th>
+					<th class="beans_sort">京豆
+						<span class="sort">
+							<span class="asc"></span>
+							<span class="desc"></span>
+						</span>
+					</th>
+					<th>资源地址</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+	<script type="text/javascript" src="js/popup.js"></script>
+</body>
+</html>

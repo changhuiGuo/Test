@@ -1,0 +1,30 @@
+ <!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>薪资走势图</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="vue.js"></script>
+		<script src="echarts.js"></script>
+	</head>
+	<body>
+		<div>
+			<button>切换显示薪资结构</button>
+			<hr>
+			<div id="charts" style="width: 1024px;height:480px;"></div>
+		</div>
+		<div id="app"></div>
+		<script src="pay.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
+
+<style type="text/css">
+	table{width: 50%;}
+	table thead tr th{background-color: #AAAAAA;border-right: 1px solid #002761;}
+	table thead tr th:last-child{border-right: none;}
+	table tbody tr{background-color: #fff;}
+	table tbody tr:nth-child(even){background-color: #eee;}
+	table tbody tr td{color: #333;text-align: right;padding: 1px 30px;}
+	table tbody tr td:first-child{text-align: center;}
+
+</style>
