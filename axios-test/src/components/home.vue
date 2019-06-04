@@ -29,7 +29,7 @@ export default {
     getData(){
       console.log('发送网络请求!');
       this.isLoading = true;
-      this.axios.get('https://www.apiopen.top/weatherApi?city=深圳').then(res=>{
+      this.axios.get('/api/weatherApi?city=深圳').then(res=>{
         console.log('请求成功!',res); 
         this.isLoading = false;
         this.listData = res.data.data;
