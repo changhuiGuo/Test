@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <flex/>
+    <router-link :to="{path:'/dice'}" style="margin-right:20px;">dice show</router-link>
+    <router-link :to="{path:'/layout'}">layout show</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import flex from './components/flex.vue'
+import dice from './components/dice.vue'
 
 export default {
   name: 'app',
   components: {
-    flex
+    dice
   }
 }
 </script>
