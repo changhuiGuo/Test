@@ -41,15 +41,16 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    padding: 15px;
     .item{
       flex-grow: 1;
       border: 1px solid blue;;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: red;
+      color: blue;
       font-weight: bold;
-      font-size: 50px;
+      font-size: 20px;
     }
     .text{
       position: absolute;
@@ -58,6 +59,7 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center; 
+      color: green;
     }
     .header{
       height: 15%;
@@ -66,6 +68,7 @@ export default {
       border: 1px solid green;
       flex-grow: 1;
       position: relative;
+      padding: 10px;
     }
     .content{
       height: 30%;
@@ -74,6 +77,7 @@ export default {
       border: 1px solid green;
       flex-grow: 1;
       position: relative;
+      padding: 10px;
     }
     .footer{
       height: 55%;
@@ -82,6 +86,42 @@ export default {
       border: 1px solid green;
       flex-grow: 1;
       position: relative;
+      padding: 10px;
+    }
+    @media screen and (min-width: 300px) {
+    .item{
+          font-size:30px;
+      }
+    }
+    @media screen and (min-width: 400px) {
+    .item{
+          font-size:35px;
+      }
+    }
+    @media screen and (min-width: 500px) {
+    .item{
+          font-size:40px;
+      }
+    }
+    @media screen and (min-width: 600px) {
+    .item{
+          font-size:45px;
+      }
+    }
+    @media screen and (min-width: 700px) {
+    .item{
+          font-size:50px;
+      }
+    }
+    @media screen and (min-width: 800px) {
+    .item{
+          font-size:55px;
+      }
+    }
+    @media screen and (min-width: 900px) {
+    .item{
+          font-size:60px;
+      }
     }
   }
 </style>
