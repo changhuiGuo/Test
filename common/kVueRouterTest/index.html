@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../lib/vue.js"></script>
+  <script src="../lib/vue-router.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
+  <script src="./install.js"></script>
+</head>
+
+<body>
+  <div id="app">
+          
+  </div>
+</body>
+<script>
+  Vue.use(VueRouter);
+  Vue.use(install);
+  // axios.created({
+  //   withCredentials:true
+  // })
+
+  var A={
+    template:`<div><h3>这是A组件</h3><button @click='sendAxios'>发送axios</button></div>`,
+    created(){
+      console.log('组件A 创建了')
+    },
+    mounted(){
+      console.log('组件A DOM加载了')
+    },
+    destroyed(){
+      console.log('组件A 销毁了')
+    },
+    methods:{
+      sendAxios(){
+        axios.get('https://www.apiopen.top/journalismApi',{ withCredentials:true}).then(function(res){
+          console.log('请求成功',res);
+        }).catch(function(err){
+          console.log('请求失败',err);
+        })
+      }
+    }
+  };
+  var login={
+    template:`<div>这是登录页面</div>`
+  }
+  var com={
+    template:`<div><h3>这是comb组件的内容{{count}}</h3><p>传过来的值是{{$route.meta}}</p></div>`,
+    watch:{
+      '$route'(to,from){
+        console.log('监听到了',this.$route);
+      }
+    },
+    data(){
+      return{
+        count:0
+      }
+    },
+
+    beforeRouteUpdate(to,from,next){
+      // console.log('enter',to,from,next)
+      this.count++;
+      next();
+    },
+    created(){
+      console.log('组件创建了',this.$route)
+    },
+  };
+  var B={
+    template:`<div>
+      <h3>这是B组件</h3>
+      <button @click="handleClick()">回到A组件</button>
+      <router-link :to="{name:'comb',params:{content:'前端'}}">前端</router-link>
+      <router-link :to="{name:'comb',params:{content:'后端'}}">后端</router-link>
+      <keep-alive>
+      <router-view></router-view>
+      </keep-alive>
+    </div>`,
+    methods:{
+      handleClick(){
+        this.$router.push('/a/fromTest')
+      }
+    }
+  };
+  var C={
+    template:`<div><h3 @click='cnt++'>这是C组件{{cnt}}</h3></div>`,
+    data(){
+      return{
+        cnt:0,
+      }
+    },
+    created(){
+      console.log('组件C 创建了')
+    },
+    mounted(){
+      console.log('组件C DOM加载了')
+    },
+    destroyed(){
+      console.log('组件C 销毁了')
+    },
+  };
+
+  var router = new VueRouter({
+    // mode:'history',
+    routes:[
+      {name:'0',path:'/',component:A},
+      {name:'1',path:'/a/:id',component:A},
+      {name:'2',path:'/b',component:B,
+        children:[
+          {name:'comb',path:'/com/:content',component:com,meta:{requireAuth:true}},
+        ]
+      },
+      {name:'3',path:'/c',component:C},
+      {name:'login',path:'/login',component:login}
+    ],
+  })
+  router.beforeEach((to,from,next)=>{
+      if(to.meta.requireAuth&&to.params.content==='后端'){
+        confirm('本页面需要登录!')?next({path:'/login'}):'';
+      }
+      next()
+  })
+
+  var App={
+    template:`
+    <div>
+      <router-link :to="{name:'1',params:{id:'fromHome'},query:{a:1,b:2}}">A</router-link>
+      <router-link to='/b'>B</router-link>
+      <router-link to='/c'>C</router-link>
+
+      <router-view></router-view>
+
+    </div>`,
+  }
+  var vm = new Vue({
+    el:'#app',
+    router,
+    template:'<App/>',
+    data:{
+    
+    },
+    mounted(){
+      this.$sayHi('hello i am come');
+    },
+    components:{
+      App
+    },
+    methods:{
+
+    }
+  })
+</script>
+</html>
+
+<style>
+    img{width: 100px;}
+</style>

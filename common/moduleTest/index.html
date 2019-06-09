@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- <script src="dist/a.js" type="text/javascript" charset="utf-8"></script> -->
+		<!-- <script src="dist/b.js" type="text/javascript" charset="utf-8"></script> -->
+		<script src="dist/bundle.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<button type="button">a</button>
+		<button type="button">b</button>
+		<button type="button">c</button>
+	</body>
+	<script type="text/javascript">
+		window.onload= function(){
+			btns = document.querySelectorAll('button');
+			btns.forEach((item,index)=>{
+				item.onclick=function(){
+					alert(index);
+				}
+			})
+		}
+	</script>
+</html>
