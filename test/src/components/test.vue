@@ -4,12 +4,30 @@
       <i></i>
       <span></span>
     </a>
+    <div>
+      <h3>{{num1}}</h3>
+      <input-num min='1' max='10' v-model="num1"></input-num>
+    </div>
+    <div>
+      <h3>{{num2}}</h3>
+      <input-num min='10' max='20' v-model="num2"></input-num>
+    </div>
   </div>
 </template>
 
 <script>
+import inputNum from './inputNum'
 export default {
   name: "test",
+  data(){
+    return{
+      num1:5,
+      num2:15,
+    }
+  },
+  components:{
+    inputNum
+  }
 };
 </script>
 
