@@ -27,12 +27,20 @@ export default {
       console.log(val);
     },
     getData(){
+      // 添加响应拦截器
+      this.axios.interceptors.response.use(function (response) {
+        // 对响应数据做点什么
+        return response.data.data;
+      }, function (error) {
+        // 对响应错误做点什么
+        return Promise.reject(error);
+      });
       console.log('发送网络请求!');
       this.isLoading = true;
       this.axios.get('/api/weatherApi?city=深圳').then(res=>{
         console.log('请求成功!',res); 
         this.isLoading = false;
-        this.listData = res.data.data;
+        this.listData = res;
       }).catch(err=>{
         his.isLoading = false;
         console.log('请求失败!',err);

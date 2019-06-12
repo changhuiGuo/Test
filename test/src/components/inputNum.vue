@@ -11,7 +11,19 @@ export default {
   name:'inputNum',
   data(){
     return{
-      currentValue:''
+      currentValue:'',
+      test:{
+        get:function(){
+          return new Promise(function(resolve,reject){
+            let m = Math.random()*10;
+            if(m>5){
+              resolve(m);
+            }else{
+              reject(m);
+            }
+          })
+        }
+      }
     }
   },
   props:["min","max","value"],
@@ -20,7 +32,6 @@ export default {
   },
   watch:{
     currentValue(newVal){
-      console.log('newVal',newVal);
       this.$emit('input',newVal);
       this.$emit('on-change',newVal);
     }
@@ -35,6 +46,11 @@ export default {
       }else{
         this.currentValue++;
       }
+      this.test.get().then(res=>{
+        console.log('success',res);
+      }).catch(err=>{
+        console.log('error',err);
+      })
     },
     sub(){
       if(this.min){
