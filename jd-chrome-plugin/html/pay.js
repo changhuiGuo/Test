@@ -5,7 +5,10 @@ var vue = new Vue({
 			mode:1,
 			startTime:'',
 			endTime:'',
-			option:{},
+      option:{},
+      date:[],
+      item:{'cash':[],'social':[],'funds':[],'reissue':[],'tax':[]},
+      itemSum:{'cash':0,'social':0,'funds':0,'reissue':0,'tax':0},
 			sourceData:{
 				'201805':{'reissue':0,'social':0,'funds':0,'tax':0,'cash':4547.5},
 				'201806':{'reissue':0,'social':0,'funds':0,'tax':0,'cash':8580.6},
@@ -19,40 +22,40 @@ var vue = new Vue({
 				'201903':{'reissue':20,'social':200.1,'funds':110.5,'tax':156.29,'cash':11553.11},
         '201904':{'reissue':40,'social':200.1,'funds':110.5,'tax':156.88,'cash':11572.52},
         '201905':{'reissue':120,'social':200.1,'funds':110.5,'tax':159.28,'cash':11650.12},
+        '201906':{'reissue':90,'social':200.1,'funds':110.5,'tax':158.38,'cash':11621.02},
 			},
 			thead:['月份','补发','个人社保','个人公积金','个人所得税','实发工资']
 		},
 		mounted(){
+      this.getSumData();
 			this.initCharts();
 		},
 		methods:{
-			initCharts(){
-				let date = [];
-				let obj = {'cash':[],'social':[],'funds':[],'reissue':[],'tax':[]};
-				let objSum = {'cash':0,'social':0,'funds':0,'reissue':0,'tax':0};
+      getSumData(){
 				for(var key in this.sourceData){
-					date.push(key);
-					obj['cash'].push(this.sourceData[key]['cash']);
-					obj['social'].push(this.sourceData[key]['social']);
-					obj['funds'].push(this.sourceData[key]['funds']);
-					obj['reissue'].push(this.sourceData[key]['reissue']);
-					obj['tax'].push(this.sourceData[key]['tax']);
+					this.date.push(key);
+					this.item['cash'].push(this.sourceData[key]['cash']);
+					this.item['social'].push(this.sourceData[key]['social']);
+					this.item['funds'].push(this.sourceData[key]['funds']);
+					this.item['reissue'].push(this.sourceData[key]['reissue']);
+					this.item['tax'].push(this.sourceData[key]['tax']);
 				}
-				for(var key in obj){
-					obj[key].forEach(item=>{
-						objSum[key] += item;
+				for(var key in this.item){
+					this.item[key].forEach(item=>{
+						this.itemSum[key] += item;
 					})
 				}
-				console.log(objSum);
+				console.log('itemSum',this.itemSum);
+      },
+			initCharts(){
 				echarts.dispose(document.querySelector('#charts')); //清画布
-				
 				var myChart = echarts.init(document.querySelector('#charts')); //初始化画布
 				// 指定图表的配置项和数据
 				if(this.mode===0){
 					this.option = {
 						title: {
-							text: `工资总计:${(objSum.cash+objSum.tax+objSum.funds+objSum.social+objSum.reissue).toFixed(1)}`,
-							subtext: '到手工资:'+objSum.cash.toFixed(1),
+							text: `工资总计:${(this.itemSum.cash+this.itemSum.tax+this.itemSum.funds+this.itemSum.social+this.itemSum.reissue).toFixed(1)}`,
+							subtext: '到手工资:'+this.itemSum.cash.toFixed(1),
 							x:'center'
 						},
 						tooltip: {
@@ -71,11 +74,11 @@ var vue = new Vue({
 								radius : '55%',
 								center: ['50%', '60%'],
 								data:[
-										{value:objSum.tax.toFixed(1), name:'个税'},
-										{value:objSum.funds.toFixed(1), name:'公积金'},
-										{value:objSum.social.toFixed(1), name:'社保'},
-										{value:objSum.reissue.toFixed(1), name:'补发'},
-										{value:objSum.cash.toFixed(1), name:'到手工资'},
+										{value:this.itemSum.tax.toFixed(1), name:'个税'},
+										{value:this.itemSum.funds.toFixed(1), name:'公积金'},
+										{value:this.itemSum.social.toFixed(1), name:'社保'},
+										{value:this.itemSum.reissue.toFixed(1), name:'补发'},
+										{value:this.itemSum.cash.toFixed(1), name:'到手工资'},
 								],
 								itemStyle: {
 									emphasis: {
@@ -111,7 +114,7 @@ var vue = new Vue({
 							{
 								type : 'category',
 								boundaryGap : false,
-								data : date
+								data : this.date
 							}
 						],
 						yAxis: [
@@ -130,7 +133,7 @@ var vue = new Vue({
 											position: [-20,-30],
 									}
 								},
-								data:obj.cash,
+								data:this.item.cash,
 								markLine: {
 									// data: [{type: 'average', name: '平均值'}]
 									data:[
@@ -144,7 +147,7 @@ var vue = new Vue({
 										],
 										[
 											{name: '中软国际',coord: [2, 4547.5],symbol:'arrow',label:{position:'middle'},lineStyle:{type:'dashed',color:'#a9a9a9'}},
-											{coord: [obj.cash.length-1, 4547.5]},
+											{coord: [this.item.cash.length-1, 4547.5]},
 										],
 									],
 								}
@@ -153,25 +156,25 @@ var vue = new Vue({
 								name:'个税',
 								type:'line',
 								stack: '总量',
-								data:obj.tax
+								data:this.item.tax
 							},
 							{
 								name:'社保',
 								type:'line',
 								stack: '总量',
-								data:obj.social
+								data:this.item.social
 							},
 							{
 								name:'公积金',
 								type:'line',
 								stack: '总量',
-								data:obj.funds
+								data:this.item.funds
 							},
 							{
 								name:'补发',
 								type:'line',
 								stack: '总量',
-								data:obj.reissue
+								data:this.item.reissue
 							}
 						]
 					};
@@ -193,7 +196,14 @@ var vue = new Vue({
 							tr += `<td>${this.sourceData[key][subkey]}</td>`;
 						}
 						tr += `</tr>`;
-					}
+          }
+          tr += `<tr><td>合计</td>
+          <td>${this.itemSum['reissue'].toFixed(1)}</td>
+          <td>${this.itemSum['social'].toFixed(1)}</td>
+          <td>${this.itemSum['funds'].toFixed(1)}</td>
+          <td>${this.itemSum['tax'].toFixed(1)}</td>
+          <td>${this.itemSum['cash'].toFixed(1)}</td>
+          </tr>`;
 					document.querySelector('#charts').innerHTML = `<table cellspacing="0" cellpadding="0">
 						<thead>
 							<tr>

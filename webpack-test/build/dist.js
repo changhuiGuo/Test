@@ -96,13 +96,24 @@ module.exports = g;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue_js__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_dist_vue_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_dist_vue_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_dist_vue_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__node_modules_vue_dist_vue_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_b_js__ = __webpack_require__(6);
+
+// import home from './src/home.vue'
 
 
-new __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue_js___default.a({
+new __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_dist_vue_js___default.a({
   el:'#app',
-  template:'<div><h3>test</h3></div>'
+  template:`<div>
+    <h3>{{msgB}}</h3>
+  </div>`,
+  data:{
+    msgB:__WEBPACK_IMPORTED_MODULE_1__src_b_js__["a" /* default */]
+  },
+  components:{
+    // home
+  }
 })
 
 /***/ }),
@@ -12508,6 +12519,14 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+let b ="bbb";
+/* harmony default export */ __webpack_exports__["a"] = (b);
 
 /***/ })
 /******/ ]);

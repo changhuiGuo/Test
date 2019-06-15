@@ -4,11 +4,16 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "webpack main.js dist.js"
+    "test": "webpack --config ./config/webpack.dev.config.js"
   },
   "author": "Hui",
   "license": "ISC",
   "dependencies": {
     "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "css-loader": "^3.0.0",
+    "style-loader": "^0.23.1",
+    "vue-loader": "^15.7.0"
   }
 }
