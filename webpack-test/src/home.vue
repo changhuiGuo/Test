@@ -1,25 +1,34 @@
 <template>
   <div>
-    <h1 class="text-red">红色字体</h1>
-    <button @click="this.msg='被点了'">点我呀</button>
+    <h1 class="text-red">{{msg}}</h1>
+    <button @click="msg='我被点了'">点我呀</button>
   </div>
 </template>
 
 <script>
+import girl from '../img/test.jpg'
 export default {
-  name:'home',
-  data(){
-    return{
-      msg:'红色字体'
-    }
+  name: "home",
+  data() {
+    return {
+      msg: "红色字体",
+      imgSrc: girl
+    };
   }
-}
+};
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+  @girls: '../img/test.jpg';
+  div{
+    height: 600px;
+    background-image: url(@girls)
+  }
   .text-red{
-    border: 1px solid #ccc;
-    color: red;
+    color:red;
   }
 </style>
+
+
+
 
