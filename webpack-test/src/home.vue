@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="text-red">{{msg}}</h1>
-    <button @click="msg='我被点了'">点我呀</button>
+    <button @click="msg='我被点了哟'">快来点我呀</button>
   </div>
 </template>
 

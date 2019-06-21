@@ -5,7 +5,10 @@ module.exports = {
   entry:'./main.js',
   output:{
     path:path.resolve('./build'),
-    filename:'dist.js'
+    filename:'[name].js'
+  },
+  devServer:{
+    port:'8090',
   },
   module:{
     rules:[
@@ -31,7 +34,7 @@ module.exports = {
         }]
       }
     ]
-  },
+  }, 
   plugins:[
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({

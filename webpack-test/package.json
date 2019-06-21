@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "webpack --config ./config/webpack.dev.config.js"
+    "dev": "webpack-dev-server --open --hot --inline --process --config ./config/webpack.dev.config.js",
+    "build": "webpack --config ./config/webpack.dev.config.js"
   },
   "author": "Hui",
   "license": "ISC",
