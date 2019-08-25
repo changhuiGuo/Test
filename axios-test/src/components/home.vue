@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-button @click="getData">请求网络数据</el-button>
+    <el-button @click="getMockData">请求模拟数据</el-button>
     <hr>
     <el-card class="box-card" v-loading='isLoading'>
       <h3>{{listData.city}}</h3>
@@ -42,8 +43,15 @@ export default {
         this.isLoading = false;
         this.listData = res;
       }).catch(err=>{
-        his.isLoading = false;
+        this.isLoading = false;
         console.log('请求失败!',err);
+      })
+    },
+    getMockData(){
+       this.axios.get('/mock/data.json').then(res=>{
+        console.log('模拟数据请求成功!',res); 
+      }).catch(err=>{
+        console.log('模拟数据请求失败!',err);
       })
     }
   }
