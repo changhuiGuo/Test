@@ -9,8 +9,27 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: ()=>import('./views/Home.vue')
+      redirect: '/home/lineChart'
     },
+    {
+      path: '/home/setting',
+      name: '大数据',
+      component: ()=>import('./components/Setting.vue')
+    },
+    {
+      path: '/home/lineChart',
+      name: '折线图',
+      component: ()=>import('./components/LineChart.vue')
+    },
+    {
+      path: '/home/kChart',
+      name: 'K线图',
+      component: ()=>import('./components/KChart.vue')
+    },
+    {
+      path: '/home/userInfo',
+      name: '用户信息',
+      component: ()=>import('./components/UserInfo.vue')
+    }
   ]
 })

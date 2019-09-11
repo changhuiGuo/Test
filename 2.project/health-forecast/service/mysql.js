@@ -16,6 +16,7 @@ module.exports = {
       let sql = `INSERT INTO health_info(date,weight) VALUES(${params.date},${params.weight})`;
       db.query(sql, function (error, results) {
         if (error) throw error;
+        resolve(results);
         console.log('--------------------------INSERT----------------------------');
         console.log(`INSERT ${JSON.stringify(params)} Successful!`)
         console.log('------------------------------------------------------------');
@@ -57,7 +58,7 @@ module.exports = {
    */
   queryData:function(){
     return new Promise((resolve,reject)=>{
-      let sql = `SELECT * FROM health_info`;
+      let sql = `SELECT * FROM health_info ORDER BY date DESC`;
       db.query(sql, function (error, results) {
         if (error) throw error;
         resolve(results);
