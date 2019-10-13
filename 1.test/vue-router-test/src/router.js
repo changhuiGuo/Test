@@ -24,12 +24,12 @@ export default new Router({
         {
           path:'1',
           name:'test1',
-          component:{template:'<div>这是子组件1的内容</div>'}
+          component: () => import('./components/add.vue')
         },
         {
           path:'2',
           name:'test2',
-          component:{template:'<div>这是子组件2的内容</div>'}
+          component:() => import('./components/sub.vue')
         }
       ]
     },
