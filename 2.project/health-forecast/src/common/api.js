@@ -1,7 +1,9 @@
 import axios from 'axios'
 
 axios.defaults.timeout = 1000*10;
-// axios.defaults.baseURL = ""
+//axios.defaults.baseURL = "http://120.79.153.232:3000/";
+//axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+const baseURL = "http://120.79.153.232";
 axios.interceptors.response.use(function (response) {
   // 对响应数据做点什么
   return response.data;
@@ -17,7 +19,7 @@ export default{
   _getData:function(options){
     let params = {
       method:options.method,
-      url:options.url,
+      url:baseURL+options.url,
     }
     options.method === "GET" ? params.params = options.data : params.data = options.data;
     return axios(params)

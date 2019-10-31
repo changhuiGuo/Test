@@ -1,8 +1,9 @@
 module.exports = {
+  publicPath: "./",
   devServer: {
     proxy: {
       '/api/': {
-        target: 'http://127.0.0.1:3000',
+        target: 'http://120.79.153.232:3000/',
         changeOrigin: true,
       },
     }
