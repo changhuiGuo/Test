@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>设备列表</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<!--<link rel="shortcut icon" href="/favicon.ico">-->
+		<link rel="stylesheet" href="../../dist/css/sm.min.css">
+		<!--<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>-->
+		<script type='text/javascript' src='../../dist/js/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='../../dist/js/sm.min.js' charset='utf-8'></script>
+		<!-- <link rel="stylesheet" href="../../css/deviceList.css" /> -->
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css" />
+		<link rel="stylesheet" href="../../css/booksList.css">
+	</head>
+
+	<body>
+		<div class="page-group " id="beijin">
+			<div class="page">
+				<!--标题栏-->
+				<header class="bar bar-nav bar-ba">
+					<a class="icon icon-left pull-left external" id="fanhui" href="index.html"></a>
+					<div class="searchbar row sblbWid">
+						<div class="search-input sblbSibor left col-80">
+							<label class="icon icon-search" for="search"></label>
+							<input type="text" id='search' placeholder='&nbsp&nbsp输入店铺名称' />
+							<label class="icon iconfont  icon-quxiao" id="quxiao" for="search"></label>
+						</div>
+						<a class="button button-fill button-primary left" id="sousuo-shou">搜索</a>
+					</div>
+				</header>
+				<div class="content dlconMain" id="contents">
+					<div class="card">
+						<!--<div class="card-content">
+				      		<div class="list-block media-list">
+				        <ul class="devULli">-->
+						<!--动态加载-->
+						<!--</ul>
+					        <div class="kongRem"></div>
+					      </div>
+					    </div> -->
+						<ul class="devULli">
+							<!-- <li>
+								<div class="clearfix borderbottom">
+									<div class="chestnut left">
+										<span class="font-sizes" style="color: #653220;">栗美美店铺</span>
+										<div class="operated">
+											<img id="imgs-hui" src="../../images/u329.png" />
+											<img src="../../images/ziying.png" />
+										</div>
+										<div class="card-content">
+											<div class="card-content-inner"><i class="icon iconfont icon-dingwei"></i>&nbsp;东莞东坑镇角社村角社新村路25汉为智能科技2楼</div>
+										</div>
+									</div>
+									<div class="chestnut2 right">
+										<span>500m</span><br />
+										<i class="icon iconfont icon-jinru right juli"></i>
+										<span class="spans">离我最近</span>
+									</div>
+								</div>
+							</li> -->
+						</ul>
+						<div class="kongRem"></div>
+					</div>
+				</div>
+				<!--工具栏-->
+				<nav class="bar bar-tab">
+					<a class="tab-item external active open-about" id="ccc" href="../mainpage/index.html">
+						<p class="fenlei"><img src="../../images/shouyedianji.png" /></p>
+						<span class="tab-label" id="aa">首页</span>
+					</a>
+					<a class="tab-item external" href="../order/order.html">
+						<p class="fenlei"><img src="../../images/dingdan1.png"></p>
+						<span class="tab-label">订单</span>
+					</a>
+					<a class="tab-item external" href="../mine/mine.html">
+						<p class="fenlei"><img src="../../images/geren1.png" /></p>
+						<span class="tab-label">我的</span>
+					</a>
+				</nav>
+			</div>
+		</div>
+		<!--拓展包中的组件-->
+		<link rel="stylesheet" href="../../dist/css/sm-extend.css">
+		<script type='text/javascript' src='../../dist/js/sm-extend.js' charset='utf-8'></script>
+		<!--获取ip-->
+		<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+		<script type='text/javascript' src="../../dist/js/zepto.cookie.min.js" charset='utf-8'></script>
+		<script type='text/javascript' src="../../js/config.js?v=2018041331" charset='utf-8'></script>
+		<script type='text/javascript' src="js/deviceList.js?v=2017122701" charset='utf-8'></script>
+		<script type="text/javascript">
+			//弹出层
+			//			window.onload=function(){
+			//				$("#ccc").on('touchstart',function(){
+			//					location.href = Config.rootPath +"html/mainpage/index.html";
+			//				});
+			//			}
+		</script>
+	</body>
+
+</html>

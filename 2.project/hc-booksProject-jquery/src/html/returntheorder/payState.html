@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>支付状态页面</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<script type='text/javascript' src='../../dist/js/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='../../dist/js/sm.min.js' charset='utf-8'></script>
+		<link rel="stylesheet" href="../../fonts/iconfont.css">
+		<link rel="stylesheet" href="../../css/booksList.css" />
+		<script src="../../js/config.js?v=2018041331" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="page-group">
+			<div class="page page-current">
+				<div class="content unkMain">
+					<div class="unkMain-sess">
+						<img src="../../images/Home_btn_borrow.png"/>
+                        <p class="bgcol-green paystates">尚未支付费用</p>
+                        <!-- <div><a href="#" class="button button-big">招码借书</a></div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script>
+	var url = decodeURI(location.search); 	//解码获取参数值,location.search获取url的?后面的值
+	var Request = new Object();
+	if(url.indexOf("?") != -1) {			//?后面有值
+	var str = url.substr(1); 			 	//截取？后面的所有字符串substr(1); 		
+		strs = str.split("&"); 				//按照&分割成字符串数组
+		for(var i = 0; i < strs.length; i++) {
+			Request[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+		}
+	}
+	if(Request.payState==1){
+		$(".paystates").html("支付成功!")
+	}else{
+		$(".paystates").html("支付成功!")
+	}
+	//------------------------------------------------------------------------------------//
+	$(function() { //监听浏览器返回事件
+		pushHistory();
+		window.addEventListener("popstate", function(e) {
+			window.location.href = Config.rootPath + "mainpage/index.html";
+		}, false);
+		function pushHistory() {
+			var state = {
+				// title: "title",
+				// url: "window.location.href = Config.rootPath + mainpage/index.html"
+			};
+			window.history.pushState(state, "title", "#");
+		}
+	});
+</script>

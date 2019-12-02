@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>注册</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="../../dist/css/sm.min.css">
+		<script type='text/javascript' src='../../dist/js/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='../../dist/js/sm.min.js' charset='utf-8'></script>
+		<link rel="stylesheet" href="../../css/booksList.css" />
+		<link rel="stylesheet" href="../../fonts/iconfont.css" />
+	</head>
+
+	<body>
+		<div class="page-group">
+			<div class="page page-current pagess">
+				<div class="content regconMain">
+					<!--提示的弹出层-->
+					<div id="regHint"></div>
+					<div class="card">
+						<div class="dlcImg"></div>
+						<div class="card-content dlMar">
+							<div class="card-content-inner">
+								<!--选项卡内容-->
+								<div class="content-block">
+									<div class="tab zcTab">
+										<div class="content-block">
+											<div class="searchbar row">
+												<div class="search-input">
+													<label class="icon iconfont icon-shouji" for="search"></label>
+													<input type="search" id='searchPhone' maxlength="11" placeholder='请输入开户手机号码' />
+												</div>
+												<p class="errMsg"></p>
+											</div>
+											<div class="searchbar row">
+												<div class="search-input">
+													<label class="icon iconfont icon-mima" for="search"></label>
+													<input type="password" id='searchPwd' maxlength="16" placeholder='请设置密码' />
+												</div>
+												<p class="errMsg"></p>
+											</div>
+											<div class="searchbar row">
+												<div class="search-input">
+													<label class="icon iconfont icon-mima" for="search"></label>
+													<input type="password" id='searchPwd2' maxlength="16" placeholder='请再次输入新密码' />
+												</div>
+												<p class="errMsg"></p>
+											</div>
+											<div class="searchbar row">
+												<div class="search-input">
+													<label class="" for="search">
+											      	<i class="icon iconfont icon-yanzhengma pwd"></i>
+											      	<input type="search" id='searchYzm' maxlength="6" placeholder='请输入验证码' class="dlsInp" />
+											      </label>
+												</div>
+												<p class="errMsg"></p>
+												<a href="#" class="button zcSecurityCode" id="setFsyzm">获取验证码</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--注册按钮-->
+								<div class="zcRes">
+									<a href="javascript:void(0)" class="button button-big" id="tijiao">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</a>
+								</div>
+							</div>
+							<!--end 选项卡内容-->
+						</div>
+					</div>
+				</div>
+				<!--<div class="dlCopy">弘驰版权所有</div>-->
+			</div>
+		</div>
+		
+		<script type='text/javascript' src='../../dist/js/zepto.cookie.js' charset='utf-8'></script>
+		<script src="../../js/config.js?v=2018041331" type="text/javascript" charset="utf-8"></script>
+		<script src="js/register.js?v=2018041815" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>设备地址</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<!--<link rel="shortcut icon" href="/favicon.ico">-->
+		<link rel="stylesheet" href="../../dist/css/sm.min.css">
+		<!--<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>-->
+		<script type='text/javascript' src='../../dist/js/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='../../dist/js/sm.min.js' charset='utf-8'></script>
+		<!-- <link rel="stylesheet" href="../../css/deviceList.css" /> -->
+		<!--百度地图-->
+		<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=l24GNHX0oeY2Vlz1QVHBfcBAk4EIOIPL"></script>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="page-group">
+			<div class="page page-current">
+				<!--百度地图-->
+				<div id="container"></div>
+				<div class="searchDivcheshi"></div>
+			</div>
+		</div>	
+	</body>
+	<script type="text/javascript">
+		var Request = new Object();
+		var url = window.decodeURI(location.search); 	//获取url中"?"符后的字串,包括？号
+		if(url.indexOf("?") != -1) {
+			var str = url.substr(1); 					//截取？后面的所有字符串
+			strs = str.split("&"); 						//按照&分割成字符串数组
+			for(var i=0;i<strs.length;i++)
+			{
+				Request[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+			}
+		}
+		var shebeilngs = Request["shebeilngs"];			//设备经度
+		var shebeilats = Request["shebeilats"];			//设备纬度
+		var detailAddress = Request["detailAddress"];	//设备的具体地址位置
+		var deName = Request["deName"];					//设备的名字
+		var lngs = window.sessionStorage["lngs"];		//我的位置
+		var lats = window.sessionStorage["lats"];		//我的位置
+		var map = new BMap.Map("container");			//创建地图实例  
+		var point = new BMap.Point(lngs,lats);			//创建点坐标
+		map.centerAndZoom(point, 12);					//地图初始化
+		map.enableScrollWheelZoom(true);				//缩放地图	
+		var marker = new BMap.Marker(point);  			// 创建标注
+		map.addOverlay(marker);              			// 将标注添加到地图中
+		var cc = [];
+		cc.push('<div class="mapDivConten"><div class="shdlSpan" data-id="4c69e60473014341bb21cedcdd5a4339" data-lngs="113.92332" data-lats="23.025868"><div class="mapLeft button">导航</div><div class="mapdevName">'+ deName +'</div><div class="mapAddress">'+ detailAddress +'</div></div>');
+		var label = new BMap.Label(
+			cc,
+			{offset: new BMap.Size(-120, -55)}
+		);
+		label.setStyle({
+			 color : "#333333",
+			 width : "13rem",
+			 height: "2.4rem",
+			 fontSize : ".6rem",
+			 lineHeight : "20px",
+			 fontFamily:"微软雅黑",
+			 padding: '.2rem'
+		});
+
+		$("#container").append(cc.join(""));
+		
+		marker.setLabel(label);
+		label.addEventListener("click", function(){          
+			var lngs = window.sessionStorage["lngs"];
+			var lats = window.sessionStorage["lats"];
+			var didianLngs = $(this).attr("data-lngs");
+			var didianLats = $(this).attr("data-lats");
+			//调用百度地图导航
+			window.location.href = "http://api.map.baidu.com/direction?origin=latlng:"+lats+","+lngs+"|name:我的位置&destination="+shebeilats+","+shebeilngs+"&mode=driving&region=东莞&output=html&src=弘驰智能";
+		});
+		
+		$(".anchorBL a[title='到百度地图查看此区域']").html("");
+	</script>
+</html>

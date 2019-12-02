@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>支付订单</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="../../dist/css/sm.min.css">
+		<!--<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>-->
+		<script type='text/javascript' src='../../dist/js/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='../../dist/js/sm.min.js' charset='utf-8'></script>
+		<link rel="stylesheet" href="../../css/deviceList.css" />
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css" />
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	</head>
+
+	<body>
+		<div class="page-group">
+			<div class="page page-current pagess">
+				<!--标题栏-->
+				<header class="bar bar-nav dh-header">
+					<a class="button button-link button-nav pull-left" href="javascript:void(0)">
+						<span class="icon icon-left payment"></span>返回
+					</a>
+					<h1 class="title">支付订单</h1>
+				</header>
+				<div class="content paconMain">
+					<!--商品信息开始-->
+					<div class="card">
+						<div class="card-header">商品信息</div>
+						<div class="card-content cctbBottom">
+							<div class="card-content-inner">
+								<ul class="poUlli">
+									<!--动态加载-->
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!--end 商品信息结束-->
+					<!--支付方式开始-->
+					<div class="card">
+						<div class="card-header">支付方式</div>
+						<div class="card-content cctbBottom">
+							<div class="card-content-inner">
+								<label for="wxin" class="label-checkbox  wPay">
+						      		<input type="radio" id="wxin" name="rad" checked />
+						      		<div class="item-media"><i class="icon iconfont icon-xuanzhong"></i></div>
+						      		<div><img src="../../images/u384.png"/></div>
+						      		<div class="wxzfDiv">
+							      		<span>微信支付</span>
+							      	</div>
+							      	<!--<div class="item-media"><i class="icon iconfont icon-xuanzhong"></i></div>
+						      		<div><img src="../../images/u386.png"/></div>
+						      		<div class="wxzfDiv">
+							      		<span>支付宝支付</span>
+							      	</div>-->
+						      	</label>
+								<!--<label for="zfubao" class="label-checkbox zPay">
+						      		<input type="radio" id="zfubao" name="rad" />
+						      		<div class="item-media"><i class="icon iconfont icon-weixuanzhong"></i></div>
+						      		<div><img src="../../images/u386.png"/></div>
+						      		<div class="zfubaoDiv-zhifub">
+							      		<span>支付宝支付</span><br />
+							      		<span class="sMing">微信公众号不支持支付宝支付，请复制地址使用第三方浏览器打开支付</span>
+							      	</div>
+						      	</label>-->
+							</div>
+						</div>
+					</div>
+					<!--end 支付方式结束-->
+					<!--优惠券开始-->
+					<div class="card cardyouhui">
+						<div class="card-content cdPad">
+							<div class="card-content-inner cdCoupon">
+
+							</div>
+						</div>
+					</div>					
+					<!--end 优惠券结束-->
+					<div class="kongRem"></div>
+				</div>
+				<div class="popup tcCon">
+					<!--<div class="content-block zjmCbk">
+						<div class="cdtanchucheng">
+							<p>优惠卷</p>
+							<ul>
+								<li>
+									<label class="label-checkbox item-content">
+								    <div class="item-inner">
+								      	<input type="radio" name="my-radio">
+									    <div class="item-media">
+								      		<div class="left">下单立减18元</div>
+								      			<div class="danxuankuan"><i class="icon icon-form-checkbox icondanxuan" ></i></div>
+								      		</div>
+							      		</div>
+						    		</label>
+								</li>
+							</ul>
+							<p class="cdtanchucheng-close">
+								<a href="javascript:void(0)" class="button button-fill button-warning guangbi close-popup">取消已选的优惠券</a>
+							</p>
+						</div>
+					</div>-->
+				</div>
+				<p class="cdtanchucheng-close clearfix">
+					<a href="javascript:void(0)" class="button button-warning cdtanchucheng-guangbi">取消已选的优惠券</a>
+					<a href="javascript:void(0)" class="button button-warning cdtanchucheng-qued">确定</a>
+				</p>
+				<nav class="bar bar-tab zfBarTab">
+					<!--<div id="wenxin">
+						【温馨提示】订单支付成功后，不支持申请退款操作。
+					</div>-->
+					<!--<a href="#" class="button button-fill">立即支付</a>-->
+					<!--<div id="cope-with">应付金额：<span>￥66.66</span></div>
+					<div id="immediately">立即支付</div>-->
+				</nav>
+			</div>
+		</div>
+	</body>
+	<!--拓展包中的组件-->
+	<link rel="stylesheet" href="../../dist/css/sm-extend.css">
+	<script type='text/javascript' src='../../dist/js/sm-extend.js' charset='utf-8'></script>
+	<!--获取ip-->
+	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+	<script type='text/javascript' src="../../dist/js/zepto.cookie.min.js" charset='utf-8'></script>
+	<script type='text/javascript' src="../../js/config.js?v=2018041331" charset='utf-8'></script>
+	<script type='text/javascript' src="js/payOrder.js?v=2018010502" charset='utf-8'></script>
+
+</html>

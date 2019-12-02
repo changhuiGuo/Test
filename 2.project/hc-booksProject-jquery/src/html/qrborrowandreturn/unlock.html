@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>开锁页面</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<script type='text/javascript' src='../../dist/js/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='../../dist/js/sm.min.js' charset='utf-8'></script>
+		<link rel="stylesheet" href="../../fonts/iconfont.css">
+		<link rel="stylesheet" href="../../css/booksList.css" />
+		<link rel="stylesheet" href="../../dist/css/sm.min.css">
+		<script type="text/javascript" src="../../js/config.js?v=2018041331" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="page-group">
+			<div class="page page-current">
+				<div class="content unkMain">
+					<div class="unkMain-sess">
+						<img src="../../images/Home_btn_borrow.png"/>
+						<p class="bgcol-green">开锁成功</p>
+						<p>请在&nbsp;<span class="bgcol-green" id="shuguan">2号书柜</span>&nbsp;处&nbsp;<span class="bgcol-green" id="bianhao">编号203</span>&nbsp;取书</p>
+					</div>
+					<div class="unkMain-wxts bgcol-red">
+						温馨提示：如系统开锁成功，书柜尚未解锁，请拨打客服热线（0769-26622766）处理！
+					</div>
+					<a href="javascript:void(0)" class="button close" style="width: 100px;margin-left: 38%;margin-top: 5%;"><span>关闭页面</span></a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script>
+	var url = decodeURI(location.search); 
+	var Request = new Object();
+	if(url.indexOf("?") != -1) {
+		var str = url.substr(1); 
+		strs = str.split("&"); 
+		for(var i = 0; i < strs.length; i++) {
+			Request[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+		}
+	}
+	var columnNo = Request["columnNo"]; 	//微信id
+	var columnNumber = Request["columnNumber"]; 	//微信id
+	$("#shuguan").html(columnNo+"号书柜");
+	$("#bianhao").html("编号"+columnNumber+"");
+	$(".close").on('touchstart', function() { 
+		open(location, '_self').close();
+	})
+	//------------------------------------------------------------------------------------//
+	$(function() { //监听浏览器返回事件
+		pushHistory();
+		window.addEventListener("popstate", function(e) {
+			window.location.href = Config.rootPath + "returntheorder/returnOrder.html";
+		}, false);
+		function pushHistory() {
+			var state = {
+				// title: "title",
+				// url: "window.location.href = Config.rootPath + mainpage/index.html"
+			};
+			window.history.pushState(state, "title", "#");
+		}
+	});
+</script>
