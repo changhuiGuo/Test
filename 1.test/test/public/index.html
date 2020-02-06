@@ -4,14 +4,28 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>test</title>
   </head>
   <body>
-    <noscript>
-      <strong>We're sorry but test doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+     <div id="app">
+       <input type="button" value="aaa">
+       <input type="button" value="bbb">
+       <input type="button" value="ccc">
+       <input type="button" value="ddd">
+     </div>
   </body>
+
+  <script>
+    window.onload = function(){
+      var btn = document.querySelectorAll('input')
+      for(var i=0;i<btn.length;i++){
+        btn[i].onclick = (function(i){
+          return function(){
+            alert(i)
+          } 
+        })(i)
+      }
+      console.log('i',i)
+    }
+  </script>
 </html>
