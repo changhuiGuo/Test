@@ -25,8 +25,74 @@
     el:'#app',
     router,
     data:{
-
     },
+    created(){
+      this.test()
+    },
+    methods:{
+      test(){
+        // -----构造函数的写法-----
+        // function User(name,pass){
+        //   this.name = name;
+        //   this.pass = pass;
+        // }
+        // User.prototype.showName = function(){
+        //   alert(this.name)
+        // }
+        // User.prototype.showPass = function(){
+        //   alert(this.pass)
+        // }
+        // let user1 = new User('zhangshan','123456');
+        // user1.showName();
+        // user1.showPass();
+        // // 构造函数的继承
+        // function vipUser(name,pass,level){
+        //   User.call(this,name,pass);
+        //   this.level = level;
+        // }
+        // vipUser.prototype = new User();
+        // // vipUser.prototype.constructor = vipUser;
+        // vipUser.prototype.showLevel = function(){
+        //   alert(this.level)
+        // }
+        // let vip1 = new vipUser('hui','123','1');
+        // vip1.showName();
+        // vip1.showPass();
+        // vip1.showLevel();
+
+        
+        // -----类的写法-----
+        class User{
+          constructor(name,pass){
+            this.name = name;
+            this.pass = pass;
+          }
+          showName(){
+            alert(this.name)
+          }
+          showPass(){
+            alert(this.pass)
+          }
+        }
+        let user1 = new User('lishi','12345');
+        user1.showName();
+        user1.showPass();
+        // 类的继承
+        class vipUser extends User {
+          constructor(name,pass,level){
+            super(name,pass);
+            this.level = level;
+          }
+          showLevel(){
+            alert(this.level)
+          }
+        }
+        let vip1 = new vipUser('hui','123','1');
+        vip1.showName();
+        vip1.showPass();
+        vip1.showLevel();
+      }
+    }
   })
 </script>
 </html>

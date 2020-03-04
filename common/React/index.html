@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.js"></script>
+  <script type="text/babel"> 
+    window.onload=function(){
+      let app = document.querySelector('#app');
+      
+      class LiCom extends React.Component {
+        constructor(...args){
+          super(...args)
+        }
+        render(){
+          return <li>
+            {this.props.msg}
+          </li>
+        }
+      }
+
+      class UlCom extends React.Component {
+        constructor(...args){
+          super(...args)
+        }
+        render(){
+          return this.props.msg.map(item=><LiCom msg={item}/>)
+        }
+      }
+
+      ReactDOM.render(
+        <UlCom msg={['123','45','aaf','vfdd','64']}/>,
+        app
+      );
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+</body>
+</html>
